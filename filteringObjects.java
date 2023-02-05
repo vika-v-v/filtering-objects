@@ -5,15 +5,15 @@ public class filteringObjects {
 
 	public static void main(String[] args) {
 		List<Book> library = new ArrayList<>();
-		library.add(new Book("Jane Eyre", 5));
-		library.add(new Book("Harry Potter", 10));
-		library.add(new Book("Robin Hood", 2));
+		library.add(new Book("Jane Eyre", 5, 100));
+		library.add(new Book("Harry Potter", 10, 200));
+		library.add(new Book("Robin Hood", 2, 150));
 		
-		List<Book> popularBooks = filter(library, (Book b) -> b.getStock() >= 5);
+		//List<Book> popularBooks = filter(library, (Book b) -> b.getStock() >= 5);
 		
 		//for(Book b:popularBooks) System.out.println(b);
 		
-		library = sort(library, (Book b1, Book b2) -> b1.getStock() > b2.getStock() ? 0 : 1);
+		library.sort((Book b1, Book b2) -> b1.getIndex().compareTo(b2.getIndex()));
 		
 		for(Book b:library) System.out.println(b);
 	}
