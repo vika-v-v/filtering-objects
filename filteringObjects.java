@@ -1,5 +1,6 @@
 package filteringObjects;
 import java.util.*;
+import java.util.function.Consumer;
 
 public class filteringObjects {
 
@@ -11,16 +12,17 @@ public class filteringObjects {
 		
 		// using lambda
 		List<Book> popularBooks = filter(library, (Book b) -> b.getStock() >= 5);
-		for(Book b:popularBooks) System.out.println(b);
 		
-		// usingmethod reference		
+		// using method reference		
 		popularBooks = filter(library, Book::overstock);
-		for(Book b:popularBooks) System.out.println(b);
 		
+		// sorting using lambdas
 		library.sort((Book b1, Book b2) -> b1.getIndex().compareTo(b2.getIndex()));
 		sort(library, (Book b1, Book b2) -> b1.getStock() > b2.getStock() ? 0 : 1);
 		
-		for(Book b:library) System.out.println(b);
+		// using consumer and method reference to print the books
+		Consumer<Book> c = System.out::println;
+		for(Book b:library) c.accept(b);
 	}
 	
 	public static <T> List<T> filter(List<T> list, Predicate<T> p) {
