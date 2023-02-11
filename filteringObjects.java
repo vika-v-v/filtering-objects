@@ -9,11 +9,16 @@ public class filteringObjects {
 		library.add(new Book("Harry Potter", 10, 200));
 		library.add(new Book("Robin Hood", 2, 150));
 		
-		//List<Book> popularBooks = filter(library, (Book b) -> b.getStock() >= 5);
+		// using lambda
+		List<Book> popularBooks = filter(library, (Book b) -> b.getStock() >= 5);
+		for(Book b:popularBooks) System.out.println(b);
 		
-		//for(Book b:popularBooks) System.out.println(b);
+		// usingmethod reference		
+		popularBooks = filter(library, Book::overstock);
+		for(Book b:popularBooks) System.out.println(b);
 		
 		library.sort((Book b1, Book b2) -> b1.getIndex().compareTo(b2.getIndex()));
+		sort(library, (Book b1, Book b2) -> b1.getStock() > b2.getStock() ? 0 : 1);
 		
 		for(Book b:library) System.out.println(b);
 	}

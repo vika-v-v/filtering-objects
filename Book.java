@@ -30,5 +30,9 @@ public class Book {
 		return index;
 	}
 	
+	public boolean overstock() {
+		return stock >= 5;
+	}
+	
 	
 }
